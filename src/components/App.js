@@ -1,31 +1,32 @@
 import React from "react";
 import "./../styles/App.css";
-import Fields from "./fields";
 
 const App = () => {
-  const eleValue = [
-    {
-      name: "Name",
-      type: "text",
-      id: "name",
-    },
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    let value = event.target["name"].value;
+    let value1 = event.target["email"].value;
+    let value2 = event.target["password"].value;
 
-    {
-      name: "Email",
-      type: "email",
-      id: "email",
-    },
+    let obj = {
+      name: value,
+      email: value1,
+      password: value2,
+    };
+    console.log(obj);
+  }
 
-    {
-      name: "Password",
-      type: "password",
-      id: "password",
-    },
-  ];
   return (
-    <div>
-      <Fields eleValue={eleValue} />
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor='name'>Name</label>
+      <input name="name" placeholder="Name" type="text" id="name"/>
+      <label htmlFor='email'>Email</label>
+      <input name="email" placeholder="Email" type="email" id="email" />
+      <label htmlFor='password'>Password</label>
+      <input name="password" placeholder="Password" type="password" id="password" />
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
